@@ -9,12 +9,15 @@
 html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: medium;
+    background-image: url(background.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 body {
-    background: linear-gradient(var(--palette-color-3), var(--palette-color-4));
     margin: 0;
-    display: flex;
+    display: none;
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
@@ -26,13 +29,15 @@ sw-header {
 }
 
 main {
-    display: grid;
-    grid-template-rows: auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     overflow: hidden scroll;
 }
 
 sw-main {
-    min-height: 90vh;
+    --theme-color-1: var(--palette-color-1);
+    --theme-color-2: var(--palette-color-2);
 }
 
 sw-footer {

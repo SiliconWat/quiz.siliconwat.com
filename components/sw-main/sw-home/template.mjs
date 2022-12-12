@@ -1,8 +1,8 @@
 const template = document.createElement("template");
 
 template.innerHTML = `
-    <link rel="stylesheet" href="components/sw-main/sw-quiz/shadow.css">
-    <main>Quiz</main>
+    <link rel="stylesheet" href="components/sw-main/sw-home/shadow.css">
+    <main>Home</main>
 `;
 
 export default template;

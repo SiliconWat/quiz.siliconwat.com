@@ -7,7 +7,7 @@ class SwQuiz extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    render(course) {
+    render(course, c) {
         this.style.display = 'block';
     }
 }

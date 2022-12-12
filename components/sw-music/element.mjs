@@ -7,7 +7,7 @@ class SwMusic extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    render() {
+    connectedCallback() {
         this.style.display = 'block';
     }
 }
