@@ -69,7 +69,6 @@ class SwHeader extends HTMLElement {
     #checkMark(event) {
         localStorage.setItem(event.target.id, Number(event.target.checked));
         this.shadowRoot.getElementById(event.target.dataset.course).render();
-        document.querySelector('sw-progress').render();
         if (event.target.id === window.location.hash.substring(1)) document.querySelector('sw-main').render();
     }
 
