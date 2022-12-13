@@ -1,4 +1,6 @@
 import { THONLY } from "/global.mjs";
+import "./sw-bar/element.mjs";
+
 const template = document.createElement("template");
 
 template.innerHTML = `
