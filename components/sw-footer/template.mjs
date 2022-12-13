@@ -27,10 +27,11 @@ template.innerHTML = `
             </section>
             <section>
                 <div>
-                    <h5>Live Demos</h5>
+                    <h5>SW Coins</h5>
                     <ul>
-                        <li><a href="https://music.siliconwat.com">Music Editor</a></li>
-                        <li><a href="https://music.siliconwat.org">Music School</a></li>
+                        <li><a href="https://heartbank.me">HeartBank Wallet</a></li>
+                        <li><a href="https://heartbank.exchange/#sw">HeartBank Exchange</a></li>
+                        <li><a href="https://heartbank.cloud/#chrome">Chrome Extension</a></li>
                     </ul> 
                 </div>
             </section>
