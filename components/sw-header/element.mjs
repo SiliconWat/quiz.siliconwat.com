@@ -1,5 +1,5 @@
 import template from './template.mjs';
-import { YEAR, getData } from '/global.mjs';
+import { FRONTEND } from '/global.mjs';
 
 class SwHeader extends HTMLElement {
     constructor() {
@@ -13,14 +13,15 @@ class SwHeader extends HTMLElement {
         this.style.opacity = 1;
     }
 
-    #title = {
+    #courses = {
         frontend: "Frontend Music Course",
         backend: "Backend Blockchain Course",
         ios: "iOS Metaverse Course"
     };
 
     async #render(course) {
-        const { units, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${course}-cohort/main/${YEAR}/Syllabus.json`);
+        const { YEAR_BEGAN, getData } = await import(`${FRONTEND}/global2.mjs`);
+        const { units, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${course}-cohort/main/${YEAR_BEGAN}/Syllabus.json`);
 
         const fragment = document.createDocumentFragment();
         const li = document.createElement('li');
@@ -28,7 +29,7 @@ class SwHeader extends HTMLElement {
         const nav = document.createElement('nav');
         const bar = document.createElement('sw-bar');
 
-        h3.textContent = this.#title[course];
+        h3.textContent = this.#courses[course];
         bar.setAttribute("id", course);
         bar.render();
 

@@ -5,20 +5,3 @@ export const FRONTEND = window.location.hostname === '127.0.0.1' ? "http://127.0
 export const SHOWCASE = window.location.hostname === '127.0.0.1' ? "http://127.0.0.1:5650" : "https://showcase.siliconwat.org";
 
 export const BACKGROUND = "radial-gradient(circle at bottom left, #773344 0%, #E3B5A4 100%)";
-
-export const YEAR = 2022;
-
-export async function getData(url) {
-    let cache = localStorage.getItem(url);
-    if (cache) {
-        return JSON.parse(cache);
-    } else {
-        try {
-            cache = await (await fetch(url, { cache: "no-store" })).json();
-        } catch(error) {
-            cache = {};
-        }
-        localStorage.setItem(url, JSON.stringify(cache))
-        return cache;
-    }  
-}

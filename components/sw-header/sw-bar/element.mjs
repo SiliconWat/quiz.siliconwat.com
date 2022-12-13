@@ -1,4 +1,4 @@
-import { YEAR, getData } from "/global.mjs";
+import { FRONTEND } from "/global.mjs";
 import template from "./template.mjs";
 
 class SwBar extends HTMLElement {
@@ -10,7 +10,8 @@ class SwBar extends HTMLElement {
 
     async render() {
         let sum = 0;
-        const { chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${this.getAttribute('id')}-cohort/main/${YEAR}/Syllabus.json`);
+        const { YEAR_BEGAN, getData } = await import(`${FRONTEND}/global2.mjs`);
+        const { chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${this.getAttribute('id')}-cohort/main/${YEAR_BEGAN}/Syllabus.json`);
 
         chapters.forEach((chapter, c) => {
             if (Number(localStorage.getItem(`${this.getAttribute('id')}-chapter${c + 1}`))) sum += 1;

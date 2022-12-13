@@ -10,7 +10,7 @@ import { FRONTEND, SHOWCASE, BACKGROUND } from "/global.mjs";
 window.onload = async () => {
     await import(`${FRONTEND}/components/sw-music/element.mjs`);
     await import(`${SHOWCASE}/components/sw-coin/element.mjs`);
-    //if (!window.TESTING) window.clearCache();
+    if (!window.TESTING) window.clearCache();
     
     await document.querySelector('sw-main').render();
     document.documentElement.style.backgroundImage = BACKGROUND;

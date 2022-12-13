@@ -8,6 +8,8 @@ class SwQuiz extends HTMLElement {
     }
 
     render(course, c) {
+        this.shadowRoot.getElementById('course').textContent = course.capitalize();
+        this.shadowRoot.getElementById('chapter').textContent = `Chapter ${c}`;
         this.style.display = 'block';
     }
 }
