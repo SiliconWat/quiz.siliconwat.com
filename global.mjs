@@ -8,5 +8,5 @@ export const GAME = (() => {
     if (window.location.port === "5651" || window.location.hostname === "quiz.siliconwat.com") return ["quiz", "Programming Concept Quizzes", "radial-gradient(circle at bottom left, #773344 0%, #E3B5A4 100%)"];
     if (window.location.port === "5652" || window.location.hostname === "code.siliconwat.com") return ["code", "Interactive Coding Exercises", "radial-gradient(circle at bottom left, #DBCBD8 0%, #564787 100%)"];
     if (window.location.port === "5653" || window.location.hostname === "flashcard.siliconwat.com") return ["flashcard", "Syntax Flashcard Games", "radial-gradient(circle at bottom left, #9AD4D6 0%, #101935 100%)"];
-    return [null];
+    return [null, null, null];
 })();
