@@ -1,6 +1,6 @@
 import template from './template.mjs';
 
-class SwQuiz extends HTMLElement {
+class SwGame extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
@@ -14,4 +14,4 @@ class SwQuiz extends HTMLElement {
     }
 }
 
-customElements.define("sw-quiz", SwQuiz);
+customElements.define("sw-game", SwGame);

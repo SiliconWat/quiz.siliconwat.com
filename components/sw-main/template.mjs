@@ -1,8 +1,9 @@
+import { ORIGIN } from "/global.mjs";
 const template = document.createElement("template");
 // Reference: https://codepen.io/dubsaru/pen/WNwEyaW
 
 template.innerHTML = `
-    <link rel="stylesheet" href="components/sw-main/shadow.css">
+    <link rel="stylesheet" href="${ORIGIN}/components/sw-main/shadow.css">
     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1280">
 		<defs>
 			<linearGradient id="linear-gradient" x1="1976.31" y1="144.84" x2="2420.03" y2="588.56" gradientTransform="translate(3391.25 1486.3) rotate(-157.52)" gradientUnits="userSpaceOnUse">

@@ -1,5 +1,5 @@
 import template from './template.mjs';
-import { FRONTEND } from '/global.mjs';
+import { FRONTEND, GAME } from '/global.mjs';
 
 class SwHeader extends HTMLElement {
     constructor() {
@@ -9,6 +9,7 @@ class SwHeader extends HTMLElement {
     }
 
     async render() {
+        this.shadowRoot.getElementById('game').textContent = GAME[1];
         this.shadowRoot.querySelector('ul').replaceChildren(await this.#render('frontend'), await this.#render('backend'), await this.#render('ios'));
         this.style.opacity = 1;
     }
