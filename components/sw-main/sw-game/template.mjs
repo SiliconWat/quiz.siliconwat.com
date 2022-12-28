@@ -16,8 +16,10 @@ template.innerHTML = `
             <ol></ol>
         </section>
         <section>
+            <button>Previous Question</button>
             <button>Submit Answer => Correct / Wrong</button>
             <button>Next => Skip Question</button>
+            <button>Finish</button>
         </section>
     </main>
     <footer>
