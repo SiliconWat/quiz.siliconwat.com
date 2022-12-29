@@ -21,13 +21,45 @@ class SwGame extends HTMLElement {
         
         this.#pointer = `${Course}-chapter${c}`;
         this.#quiz = quizzes[c];
-
         this.#render();
-        this.shadowRoot.getElementById('total').textContent = this.#quiz.length;
-        this.style.display = 'block';
     }
 
     #render() {
+        this.shadowRoot.querySelectorAll("main, footer").forEach(element => element.style.display = 'none');
+        switch (localStorage.getItem(`${this.#pointer}-status`)) {
+            case "finished":
+                this.shadowRoot.querySelector('footer').style.display = 'block';
+                break;
+            case "rewarded":
+                break;
+            default:
+                this.#renderProblem();
+                this.shadowRoot.getElementById('total').textContent = this.#quiz.length;
+                this.shadowRoot.querySelector('main').style.display = 'block';
+        }
+        this.style.display = 'block';
+    }
+
+    finish(event) {
+        localStorage.setItem(`${this.#pointer}-status`, "finished");
+        this.#render();
+    }
+
+    restart(event) {
+        this.#quiz.forEach(problem => {
+            localStorage.removeItem(`${this.#pointer}-problem${problem.id}-selection`);
+            localStorage.removeItem(`${this.#pointer}-problem${problem.id}-answer`);
+        });
+        localStorage.removeItem(`${this.#pointer}-status`);
+        localStorage.removeItem(`${this.#pointer}-current`);
+        this.#render();
+    }
+
+    #renderResult() {
+
+    }
+
+    #renderProblem() {
         const current = Number(localStorage.getItem(`${this.#pointer}-current`));
         const problem = this.#quiz[current];
         const choices = document.createDocumentFragment();
@@ -63,23 +95,23 @@ class SwGame extends HTMLElement {
     #select(id, answer, event) {
         //localStorage.setItem(`${this.#pointer}-problem${id}-selection`, event.target.id);
         localStorage.setItem(`${this.#pointer}-problem${id}-selection`, answer);
-        this.#render();
+        this.#renderProblem();
     }
 
     submit(event) {
         const problem = this.#quiz[Number(localStorage.getItem(`${this.#pointer}-current`))];
         localStorage.setItem(`${this.#pointer}-problem${problem.id}-answer`, localStorage.getItem(`${this.#pointer}-problem${problem.id}-selection`));
-        this.#render();
+        this.#renderProblem();
     }
 
     next(event) {
         localStorage.setItem(`${this.#pointer}-current`, Number(localStorage.getItem(`${this.#pointer}-current`)) + 1);
-        this.#render();
+        this.#renderProblem();
     }
 
     previous(event) {
         localStorage.setItem(`${this.#pointer}-current`, Number(localStorage.getItem(`${this.#pointer}-current`)) - 1);
-        this.#render();
+        this.#renderProblem();
     }
 }
 

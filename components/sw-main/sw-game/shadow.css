@@ -6,6 +6,10 @@
     color: white;
 }
 
+main, footer {
+    display: none;
+}
+
 li.selected {
     color: blue;
 }
