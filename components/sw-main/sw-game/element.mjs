@@ -83,17 +83,20 @@ class SwGame extends HTMLElement {
 
     #renderButtons(current, problem) {
         const answer = localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`);
+
         this.shadowRoot.getElementById('previous').style.display = current === 0 ? 'none' : 'inline-block';
         this.shadowRoot.getElementById('next').style.display = current < this.#quiz.length - 1 ? 'inline-block' : 'none';
         this.shadowRoot.getElementById('next').textContent = answer ? "Next Question" : "Skip Question";
         this.shadowRoot.getElementById('submit').style.display = localStorage.getItem(`${this.#pointer}-problem${problem.id}-selection`) ? 'inline-block' : 'none';
         this.shadowRoot.getElementById('submit').textContent = localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`) ? (answer == problem.answer ? "Correct" : "Wrong") : "Submit Answer";
         this.shadowRoot.getElementById('submit').disabled = answer;
+
+        this.shadowRoot.getElementById('submit').classList.remove("correct", "wrong");
         if (answer) this.shadowRoot.getElementById('submit').classList.add(answer == problem.answer ? "correct" : "wrong");
     }
 
     #select(id, answer, event) {
-        //localStorage.setItem(`${this.#pointer}-problem${id}-selection`, event.target.id);
+        //localStorage.setItem(`${this.#pointer}-problem${id}-selection`, event.target.id); // race condition
         localStorage.setItem(`${this.#pointer}-problem${id}-selection`, answer);
         this.#renderProblem();
     }
