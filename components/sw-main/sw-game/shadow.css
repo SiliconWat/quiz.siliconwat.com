@@ -6,6 +6,26 @@
     color: white;
 }
 
+li.selected {
+    color: blue;
+}
+
+li.correct {
+    background-color: green;
+}
+
+li.wrong {
+    background-color: red;
+}
+
+button.correct {
+    color: green;
+}
+
+button.wrong {
+    color: red;
+}
+
 @media (max-width: 480px) {
     :host {
         margin: 0 30px;
