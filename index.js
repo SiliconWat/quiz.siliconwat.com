@@ -6,7 +6,7 @@ import "/components/sw-main/element.mjs";
 
 import "/components/sw-footer/element.mjs";
 
-import { FRONTEND, SHOWCASE, GAME } from "/global.mjs";
+import { FRONTEND_COURSE as FRONTEND, SHOWCASE, GAME } from "https://thonly.org/global.mjs";
 window.onload = async () => {
     await import(`${FRONTEND}/components/sw-music/element.mjs`);
     await import(`${SHOWCASE}/components/sw-coin/element.mjs`);

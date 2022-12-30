@@ -1,4 +1,4 @@
-import { GAME } from '/global.mjs';
+import { GAME } from 'https://thonly.org/global.mjs';
 import template from './template.mjs';
 
 class SwMain extends HTMLElement {

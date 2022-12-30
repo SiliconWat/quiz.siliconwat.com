@@ -1,4 +1,4 @@
-import { ORIGIN, THONLY } from "/global.mjs";
+import { QUIZ as ORIGIN, THONLY } from "https://thonly.org/global.mjs";
 import "./sw-bar/element.mjs";
 
 const template = document.createElement("template");

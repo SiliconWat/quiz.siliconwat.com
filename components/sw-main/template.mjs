@@ -1,4 +1,4 @@
-import { ORIGIN } from "/global.mjs";
+import { QUIZ as ORIGIN } from "https://thonly.org/global.mjs";
 const template = document.createElement("template");
 // Reference: https://codepen.io/dubsaru/pen/WNwEyaW
 

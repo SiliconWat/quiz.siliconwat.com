@@ -1,5 +1,5 @@
 import template from './template.mjs';
-import { FRONTEND, GAME } from '/global.mjs';
+import { FRONTEND_COURSE as FRONTEND, GAME } from 'https://thonly.org/global.mjs';
 
 class SwHeader extends HTMLElement {
     constructor() {
