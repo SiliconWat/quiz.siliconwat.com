@@ -54,7 +54,7 @@ class SwHeader extends HTMLElement {
                     input.id = `${course}-chapter${c + 1}`;
                     input.setAttribute('data-course', course);
                     input.type = 'checkbox';
-                    input.checked = Boolean(Number(localStorage.getItem(input.id)));
+                    input.checked = localStorage.getItem(input.id) === "completed";
                     input.oninput = this.#checkMark.bind(this);
                     a.href = `#${input.id}`;
                     a.textContent = `Chapter ${c + 1}: ${chapter.title}`;
@@ -69,7 +69,7 @@ class SwHeader extends HTMLElement {
     }
 
     #checkMark(event) {
-        localStorage.setItem(event.target.id, Number(event.target.checked));
+        localStorage.setItem(event.target.id, event.target.checked ? "completed" : 0);
         this.shadowRoot.getElementById(event.target.dataset.course).render();
         if (event.target.id === window.location.hash.substring(1)) document.querySelector('sw-main').render();
     }

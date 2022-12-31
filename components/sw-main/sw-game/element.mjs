@@ -26,11 +26,18 @@ class SwGame extends HTMLElement {
 
     #render() {
         this.shadowRoot.querySelectorAll("main, footer").forEach(element => element.style.display = 'none');
-        switch (localStorage.getItem(`${this.#pointer}-status`)) {
+        switch (localStorage.getItem(this.#pointer)) {
             case "finished":
+                this.#renderResult();
                 this.shadowRoot.querySelector('footer').style.display = 'block';
                 break;
             case "rewarded":
+                this.#renderResult();
+                this.shadowRoot.querySelector('footer').style.display = 'block';
+                break;
+            case "completed":
+                this.#renderResult();
+                this.shadowRoot.querySelector('footer').style.display = 'block';
                 break;
             default:
                 this.#renderProblem();
@@ -41,7 +48,7 @@ class SwGame extends HTMLElement {
     }
 
     finish(event) {
-        localStorage.setItem(`${this.#pointer}-status`, "finished");
+        localStorage.setItem(this.#pointer, "finished");
         this.#render();
     }
 
@@ -50,13 +57,20 @@ class SwGame extends HTMLElement {
             localStorage.removeItem(`${this.#pointer}-problem${problem.id}-selection`);
             localStorage.removeItem(`${this.#pointer}-problem${problem.id}-answer`);
         });
-        localStorage.removeItem(`${this.#pointer}-status`);
+        localStorage.setItem(this.#pointer, 0);
         localStorage.removeItem(`${this.#pointer}-current`);
         this.#render();
     }
 
-    #renderResult() {
+    collect(event) {
 
+    }
+
+    #renderResult() {
+        this.shadowRoot.getElementById('restart').disabled = localStorage.getItem(this.#pointer) === "completed";
+        this.shadowRoot.getElementById('restart').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
+        this.shadowRoot.getElementById('collect').disabled = true;
+        this.shadowRoot.getElementById('collect').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
     }
 
     #renderProblem() {

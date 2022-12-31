@@ -20,7 +20,7 @@ class SwMain extends HTMLElement {
         this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(this.#hash[1], this.#hash[2]);
         document.documentElement.style.backgroundImage = GAME[2];
         document.querySelector('main').style.display = 'flex';
-        this.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
+        document.body.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
     }
 
     get #hash() {

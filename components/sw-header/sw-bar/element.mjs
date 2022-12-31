@@ -14,7 +14,7 @@ class SwBar extends HTMLElement {
         const { chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${this.getAttribute('id')}-cohort/main/${YEAR_BEGAN}/Syllabus.json`);
 
         chapters.forEach((chapter, c) => {
-            if (Number(localStorage.getItem(`${this.getAttribute('id')}-chapter${c + 1}`))) sum += 1;
+            if (localStorage.getItem(`${this.getAttribute('id')}-chapter${c + 1}`) === "completed") sum += 1;
         });
 
         const percent = Math.round(sum/chapters.length*100);

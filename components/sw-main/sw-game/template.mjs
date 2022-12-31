@@ -27,8 +27,8 @@ template.innerHTML = `
         <h3>Wrong: <span id="wrong"></span></h3>
         <h3>Skipped: <span id="skipped"></span></h3>
         <h2>Score: <span id="score"></span></h2>
-        <button disabled>Collect SW Coins</button>
-        <button onclick="this.getRootNode().host.restart(event)">Restart Quiz</button>
+        <button id="collect">Collect SW Coins</button>
+        <button id="restart" onclick="this.getRootNode().host.restart(event)">Restart Quiz</button>
     </footer>
 `;
 
