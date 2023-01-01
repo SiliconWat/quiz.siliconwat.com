@@ -5,10 +5,11 @@ template.innerHTML = `
     <header>
         <h1 id="course"></h1>
         <h2 id="chapter"></h2>
+        <h3 id="title"></h3>
     </header>
     <main>
         <section>
-            <h3>QUESTION <span id="current"></span> OF <span id="total"></span></h3>
+            <h4>QUESTION <span id="current"></span> OF <span id="total"></span></h4>
             <p>No Time Limit</p>
         </section>
         <section>

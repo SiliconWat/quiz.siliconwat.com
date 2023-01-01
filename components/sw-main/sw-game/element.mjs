@@ -17,10 +17,11 @@ class SwGame extends HTMLElement {
         const quizzes = await getData(`https://gist.githubusercontent.com/thonly/0a6a6dd684288d3963723f69d91cebe4/raw/${Course}.json`);
 
         this.shadowRoot.getElementById('course').textContent = course.title;
-        this.shadowRoot.getElementById('chapter').textContent = `Chapter ${c}: ${chapters[c - 1].title}`;
+        this.shadowRoot.getElementById('chapter').textContent = `Chapter ${c}`;
+        this.shadowRoot.getElementById('title').textContent = chapters[c - 1].title;
         
         this.#pointer = `${Course}-chapter${c}`;
-        this.#quiz = quizzes[c];
+        this.#quiz = quizzes[c] || [];
         this.#render();
     }
 
@@ -67,6 +68,23 @@ class SwGame extends HTMLElement {
     }
 
     #renderResult() {
+        let correct = 0, wrong = 0, skipped = 0;
+
+        this.#quiz.forEach(problem => {
+            const answer = localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`);
+            if (answer === null) {
+                skipped++;
+            } else {
+                if (answer == problem.answer) correct++
+                else wrong++;
+            }
+        });
+
+        this.shadowRoot.getElementById('correct').textContent = correct;
+        this.shadowRoot.getElementById('wrong').textContent = wrong;
+        this.shadowRoot.getElementById('skipped').textContent = skipped;
+        this.shadowRoot.getElementById('score').textContent = this.#quiz.length > 0 ? Math.round((correct - wrong) / this.#quiz.length * 100) + "%" : "0%";
+
         this.shadowRoot.getElementById('restart').disabled = localStorage.getItem(this.#pointer) === "completed";
         this.shadowRoot.getElementById('restart').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
         this.shadowRoot.getElementById('collect').disabled = true;
@@ -75,22 +93,24 @@ class SwGame extends HTMLElement {
 
     #renderProblem() {
         const current = Number(localStorage.getItem(`${this.#pointer}-current`));
-        const problem = this.#quiz[current];
+        const problem = this.#quiz[current] || {};
         const choices = document.createDocumentFragment();
 
-        problem.choices.forEach((choice, answer) => {
-            const selection = localStorage.getItem(`${this.#pointer}-problem${problem.id}-selection`);
-            const li = document.createElement('li');
-            li.id = answer;
-            li.innerHTML = choice;
-            li.onclick = this.#select.bind(this, problem.id, answer);
-            if (answer == selection) li.classList.add('selected');
-            if (localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`)) li.classList.add(answer === problem.answer ? 'correct' : 'wrong');
-            choices.append(li);
-        });
+        if (problem.choices) {
+            problem.choices.forEach((choice, answer) => {
+                const selection = localStorage.getItem(`${this.#pointer}-problem${problem.id}-selection`);
+                const li = document.createElement('li');
+                li.id = answer;
+                li.innerHTML = choice;
+                li.onclick = this.#select.bind(this, problem.id, answer);
+                if (answer == selection) li.classList.add('selected');
+                if (localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`)) li.classList.add(answer === problem.answer ? 'correct' : 'wrong');
+                choices.append(li);
+            });
+        }
 
-        this.shadowRoot.getElementById('current').textContent = current + 1;
-        this.shadowRoot.getElementById('question').innerHTML = problem.question;
+        this.shadowRoot.getElementById('current').textContent = problem.question ? current + 1 : 0;
+        this.shadowRoot.getElementById('question').innerHTML = problem.question || "TBA";
         this.shadowRoot.querySelector('ol').replaceChildren(choices);
         this.#renderButtons(current, problem);
     }
