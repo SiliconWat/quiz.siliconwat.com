@@ -1,10 +1,9 @@
-import "/components/sw-header/element.mjs";
-
 import "/components/sw-main/sw-home/element.mjs";
 import "/components/sw-main/sw-game/element.mjs";
-import "/components/sw-main/element.mjs";
 
+import "/components/sw-header/element.mjs";
 import "/components/sw-footer/element.mjs";
+import "/components/sw-main/element.mjs";
 
 import { FRONTEND_COURSE as FRONTEND, SHOWCASE, GAME } from "https://thonly.org/global.mjs";
 window.onload = async () => {
