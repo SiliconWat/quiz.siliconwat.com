@@ -9,6 +9,7 @@ header {
     color: white;
     text-align: center;
     text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    margin-top: 50px;
 }
 
 main, footer {
@@ -74,6 +75,18 @@ button.wrong {
 @media (max-width: 480px) {
     :host {
         margin: 0 30px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    header h2 {
+        font-size: 1.2em;
+    }
+
+    header h3 {
+        font-size: 1em;
     }
 
     main section:nth-child(2) {

@@ -17,7 +17,7 @@ class SwGame extends HTMLElement {
         const quizzes = await getData(`https://gist.githubusercontent.com/thonly/0a6a6dd684288d3963723f69d91cebe4/raw/${Course}.json`);
 
         this.shadowRoot.getElementById('course').textContent = course.title;
-        this.shadowRoot.getElementById('chapter').textContent = `Chapter ${c}`;
+        this.shadowRoot.getElementById('chapter').textContent = `Learn: Chapter ${c}`;
         this.shadowRoot.getElementById('title').textContent = chapters[c - 1].title;
         
         this.#pointer = `${Course}-chapter${c}`;
