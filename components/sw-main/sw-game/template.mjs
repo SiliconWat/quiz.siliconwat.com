@@ -18,7 +18,7 @@ template.innerHTML = `
         </section>
         <section>
             <p id="question"></p>
-            <ol></ol>
+            <ol type="A"></ol>
         </section>
         <section>
             <button id="submit" onclick="this.getRootNode().host.submit(event)"></button>

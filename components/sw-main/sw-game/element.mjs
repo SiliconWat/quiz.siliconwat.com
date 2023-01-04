@@ -15,10 +15,11 @@ class SwGame extends HTMLElement {
         const { YEAR_BEGAN, getData } = await import(`${FRONTEND}/global2.mjs`);
         const { course, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${Course}-cohort/main/${YEAR_BEGAN}/Syllabus.json`);
         const quizzes = await getData(`https://gist.githubusercontent.com/thonly/0a6a6dd684288d3963723f69d91cebe4/raw/${Course}.json`);
+        const completed = localStorage.getItem(this.#pointer) === 'completed';
 
         this.shadowRoot.getElementById('course').textContent = course.title;
-        this.shadowRoot.getElementById('chapter').textContent = `Learn: Chapter ${c}`;
-        this.shadowRoot.getElementById('title').textContent = chapters[c - 1].title;
+        this.shadowRoot.getElementById('chapter').textContent = `${completed ? "✅" : "📖"} Learn: Chapter ${c}`;
+        this.shadowRoot.getElementById('title').textContent = `${completed ? "☑️" : "📋"} ${chapters[c - 1].title}`;
         
         this.#pointer = `${Course}-chapter${c}`;
         this.#quiz = quizzes[c] || [];
@@ -130,9 +131,11 @@ class SwGame extends HTMLElement {
     }
 
     #select(id, answer, event) {
-        //localStorage.setItem(`${this.#pointer}-problem${id}-selection`, event.target.id); // race condition
-        localStorage.setItem(`${this.#pointer}-problem${id}-selection`, answer);
-        this.#renderProblem();
+        if (localStorage.getItem(`${this.#pointer}-problem${id}-answer`) === null) {
+            //localStorage.setItem(`${this.#pointer}-problem${id}-selection`, event.target.id); // race condition
+            localStorage.setItem(`${this.#pointer}-problem${id}-selection`, answer);
+            this.#renderProblem();
+        }
     }
 
     submit(event) {

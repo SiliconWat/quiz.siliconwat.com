@@ -48,28 +48,61 @@ main section:last-child {
     justify-content: space-between;
 }
 
+p {
+    font-size: larger;
+}
+
 code {
     font-weight: bold;
 }
 
+ol {
+    list-style-type: "🔲";
+    padding: 0;
+}
+
+li {
+    padding-left: 10px;
+    margin: 20px;
+    cursor: pointer;
+}
+
 li.selected {
-    color: blue;
+    list-style-type: "✔️";
 }
 
-li.correct {
-    background-color: green;
+li.correct, li.wrong {
+    cursor: default;
+    opacity: 0.5;
 }
 
-li.wrong {
-    background-color: red;
+button {
+    background-color: #1f8197;
+    border: 0;
+    padding: 5px 20px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1em;
+}
+
+button.correct::before {
+    content: "👍🏼";
+    margin-right: 10px;
+}
+
+button.wrong::before {
+    content: "👎🏼";
+    margin-right: 10px;
 }
 
 button.correct {
-    color: green;
+    background-color: green;
 }
 
 button.wrong {
-    color: red;
+    background-color: red;
 }
 
 @media (max-width: 480px) {
@@ -91,5 +124,9 @@ button.wrong {
 
     main section:nth-child(2) {
         margin: 50px 20px;
+    }
+
+    aside button {
+        font-size: 0.7em;
     }
 }
