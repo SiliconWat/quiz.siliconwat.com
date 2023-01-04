@@ -9,17 +9,19 @@ template.innerHTML = `
     </header>
     <main>
         <section>
-            <h4>QUESTION <span id="current"></span> OF <span id="total"></span></h4>
-            <p>No Time Limit</p>
+            <h4>Question <span id="current"></span> of <span id="total"></span></h4>
+            <small>( <em>No Time Limit</em> )</small>
+            <aside>
+                <button id="previous" onclick="this.getRootNode().host.previous(event)">Previous Question</button>
+                <button id="next" onclick="this.getRootNode().host.next(event)"></button>
+            </aside>
         </section>
         <section>
             <p id="question"></p>
             <ol></ol>
         </section>
         <section>
-            <button id="previous" onclick="this.getRootNode().host.previous(event)">Previous Question</button>
             <button id="submit" onclick="this.getRootNode().host.submit(event)"></button>
-            <button id="next" onclick="this.getRootNode().host.next(event)"></button>
             <button onclick="this.getRootNode().host.finish(event)">Finish</button>
         </section>
     </main>

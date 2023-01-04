@@ -2,6 +2,7 @@
     display: none;
     font-size: medium;
     position: relative;
+    width: 100vw;
 }
 
 slot {
