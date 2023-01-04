@@ -25,27 +25,35 @@ main, footer {
     box-sizing: border-box;
 }
 
-main h4 {
+section:first-child {
+    text-align: center;
+}
+
+section:nth-child(2) {
+    margin: 50px 30px;
+}
+
+section:last-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+h4 {
     margin: 0 0 10px;
     font-size: x-large;
 }
 
-main aside {
+footer h4 {
+    background-color: #1f8197;
+    padding: 10px;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+aside {
     margin: 10px;
-}
-
-main section:first-child {
-    text-align: center;
-}
-
-main section:nth-child(2) {
-    margin: 50px 30px;
-}
-
-main section:last-child {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 p {
@@ -56,9 +64,18 @@ code {
     font-weight: bold;
 }
 
-ol {
+ol, ul {
     list-style-type: "🔲";
     padding: 0;
+}
+
+ul li {
+    font-weight: bold;
+    font-size: larger;
+}
+
+ul li span {
+    float: right;
 }
 
 li {
@@ -74,6 +91,26 @@ li.selected {
 li.correct, li.wrong {
     cursor: default;
     opacity: 0.5;
+}
+
+li.corrects {
+    list-style-type: "👍🏼";
+    color: green;
+}
+
+li.wrongs {
+    list-style-type: "👎🏼";
+    color: red;
+}
+
+li.skips {
+    list-style-type: "👐🏼";
+    color: grey;
+}
+
+li.score {
+    list-style-type: "👏🏼";
+    font-size: xx-large;
 }
 
 button {
@@ -103,6 +140,11 @@ button.correct {
 
 button.wrong {
     background-color: red;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: default;
 }
 
 @media (max-width: 480px) {

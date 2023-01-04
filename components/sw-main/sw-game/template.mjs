@@ -26,12 +26,22 @@ template.innerHTML = `
         </section>
     </main>
     <footer>
-        <h3>Correct: <span id="correct"></span></h3>
-        <h3>Wrong: <span id="wrong"></span></h3>
-        <h3>Skipped: <span id="skipped"></span></h3>
-        <h2>Score: <span id="score"></span></h2>
-        <button id="collect">Collect SW Coins</button>
-        <button id="restart" onclick="this.getRootNode().host.restart(event)">Restart Quiz</button>
+        <section>
+            <h4>Reward Summary</h4>
+        </section>
+        <section>
+            <ul>
+                <li class="corrects">Correct: <span id="correct"></span></li>
+                <li class="wrongs">Wrong: <span id="wrong"></span></li>
+                <li class="skips">Skipped: <span id="skipped"></span></li>
+                <hr>
+                <li class="score">Score <span id="score"></span></li>
+            </ul>
+        </section>
+        <section>
+            <button id="restart" onclick="this.getRootNode().host.restart(event)">Retake Quiz</button>
+            <button id="collect">Collect Coins</button>
+        </section>
     </footer>
 `;
 
