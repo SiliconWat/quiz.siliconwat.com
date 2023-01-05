@@ -11,7 +11,7 @@ class SwGame extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
-    async render(Course, c) {
+    async render(Course, c, ref) {
         const { YEAR_BEGAN, getData } = await import(`${FRONTEND}/global2.mjs`);
         const { course, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${Course}-cohort/main/${YEAR_BEGAN}/Syllabus.json`);
         const quizzes = await getData(`https://gist.githubusercontent.com/thonly/0a6a6dd684288d3963723f69d91cebe4/raw/${Course}.json`);
@@ -19,9 +19,9 @@ class SwGame extends HTMLElement {
         const chapter = chapters[c - 1]
 
         this.shadowRoot.getElementById('course').textContent = course.title;
-        this.shadowRoot.getElementById('course').href = `https://${Course}.siliconwat.com`;
+        this.shadowRoot.getElementById('course').href = `https://${Course}.siliconwat.${ref === 'cohort' ? "org" : "com"}`;
         this.shadowRoot.getElementById('chapter').textContent = `${completed ? "✅" : "📖"} Learn: Chapter ${c}`;
-        this.shadowRoot.getElementById('chapter').href = `https://${Course}.siliconwat.com/#learn-chapter${c}`;
+        this.shadowRoot.getElementById('chapter').href = `https://${Course}.siliconwat.${ref === 'cohort' ? "org" : "com"}/#learn-chapter${c}`;
         this.shadowRoot.getElementById('title').textContent = `${completed ? "☑️" : "📋"} ${chapter.title}`;
         this.shadowRoot.getElementById('title').href = chapter.medium;
         this.shadowRoot.getElementById('title').target = "_blank";

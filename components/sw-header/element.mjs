@@ -10,6 +10,7 @@ class SwHeader extends HTMLElement {
 
     async render() {
         this.shadowRoot.getElementById('game').textContent = GAME[1];
+        this.shadowRoot.getElementById('game').href = window.location.search;
         this.shadowRoot.querySelector('ul').replaceChildren(await this.#render('frontend'), await this.#render('backend'), await this.#render('ios'));
         this.style.opacity = 1;
     }
@@ -56,7 +57,7 @@ class SwHeader extends HTMLElement {
                     input.type = 'checkbox';
                     input.checked = localStorage.getItem(input.id) === "completed";
                     input.oninput = this.#checkMark.bind(this);
-                    a.href = `#${input.id}`;
+                    a.href = `${this.#query}#${input.id}`;
                     a.textContent = `Chapter ${c + 1}: ${chapter.title}`;
 
                     menu.append(li);
@@ -79,6 +80,11 @@ class SwHeader extends HTMLElement {
         searchParams.set("lang", event.target.value);
         window.location.search = searchParams.toString();
         //TODO: change base url to include language
+    }
+
+    get #query() {
+        const searchParams = new URLSearchParams(window.location.search);
+        return `?lang=${searchParams.get("lang") || "en"}` + (searchParams.get("ref") ? `&ref=${searchParams.get("ref")}` : "");
     }
 }
 

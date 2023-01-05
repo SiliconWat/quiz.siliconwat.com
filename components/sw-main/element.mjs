@@ -17,7 +17,7 @@ class SwMain extends HTMLElement {
         document.documentElement.style.backgroundImage = "url(background.gif)";
         document.querySelector('main').style.display = 'none';
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
-        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(this.#hash[1], this.#hash[2]);
+        this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(this.#hash[1], this.#hash[2], this.#query);
         document.documentElement.style.backgroundImage = GAME[2];
         document.querySelector('main').style.display = 'flex';
         document.body.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
@@ -28,6 +28,11 @@ class SwMain extends HTMLElement {
             const hash = window.location.hash.substring(1).split("-");
             return ["SW-GAME", hash[0], Number(hash[1].replace("chapter", ""))];
         } return ["SW-HOME", null, null];
+    }
+
+    get #query() {
+        const searchParams = new URLSearchParams(window.location.search);
+        return searchParams.get("ref");
     }
 }
 

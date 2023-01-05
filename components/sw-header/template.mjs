@@ -9,7 +9,7 @@ template.innerHTML = `
     <header>
         <section>
             <a href="https://siliconwat.com"><img src="siliconwat.png"></a>
-            <a href="#"><h1 id="game"></h1></a>
+            <h1><a id="game"></a></h1>
         </section>
         <input id="menu-toggle" type="checkbox">
         <label class='menu-button-container' for="menu-toggle">
