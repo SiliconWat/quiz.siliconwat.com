@@ -46,7 +46,7 @@ header a {
 
 h4 {
     margin: 0 0 10px;
-    font-size: x-large;
+    font-size: xx-large;
 }
 
 footer h4 {
@@ -57,7 +57,15 @@ footer h4 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+small {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
 aside {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
     margin: 10px;
 }
 
