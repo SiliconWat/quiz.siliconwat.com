@@ -16,10 +16,15 @@ class SwGame extends HTMLElement {
         const { course, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${Course}-cohort/main/${YEAR_BEGAN}/Syllabus.json`);
         const quizzes = await getData(`https://gist.githubusercontent.com/thonly/0a6a6dd684288d3963723f69d91cebe4/raw/${Course}.json`);
         const completed = localStorage.getItem(this.#pointer) === 'completed';
+        const chapter = chapters[c - 1]
 
         this.shadowRoot.getElementById('course').textContent = course.title;
+        this.shadowRoot.getElementById('course').href = `https://${Course}.siliconwat.com`;
         this.shadowRoot.getElementById('chapter').textContent = `${completed ? "✅" : "📖"} Learn: Chapter ${c}`;
-        this.shadowRoot.getElementById('title').textContent = `${completed ? "☑️" : "📋"} ${chapters[c - 1].title}`;
+        this.shadowRoot.getElementById('chapter').href = `https://${Course}.siliconwat.com/#learn-chapter${c}`;
+        this.shadowRoot.getElementById('title').textContent = `${completed ? "☑️" : "📋"} ${chapter.title}`;
+        this.shadowRoot.getElementById('title').href = chapter.medium;
+        this.shadowRoot.getElementById('title').target = "_blank";
         
         this.#pointer = `${Course}-chapter${c}`;
         this.#quiz = quizzes[c] || [];

@@ -3,9 +3,9 @@ const template = document.createElement("template");
 template.innerHTML = `
     <link rel="stylesheet" href="components/sw-main/sw-game/shadow.css">
     <header>
-        <h1 id="course"></h1>
-        <h2 id="chapter"></h2>
-        <h3 id="title"></h3>
+        <h1><a id="course"></a></h1>
+        <h2><a id="chapter"></a></h2>
+        <h3><a id="title"></a></h3>
     </header>
     <main>
         <section>

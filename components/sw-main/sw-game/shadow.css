@@ -39,6 +39,11 @@ section:last-child {
     justify-content: space-between;
 }
 
+header a {
+    color: currentColor;
+    text-decoration: none;
+}
+
 h4 {
     margin: 0 0 10px;
     font-size: x-large;
@@ -110,7 +115,7 @@ li.skips {
 
 li.score {
     list-style-type: "👏🏼";
-    font-size: xx-large;
+    font-size: x-large;
 }
 
 button {
@@ -169,6 +174,14 @@ button:disabled {
     }
 
     aside button {
-        font-size: 0.7em;
+        font-size: 0.5em;
+    }
+
+    footer button {
+        font-size: 0.8em;
+    }
+    
+    footer h4 {
+        font-size: larger;
     }
 }
