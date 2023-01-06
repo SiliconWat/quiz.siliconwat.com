@@ -3,12 +3,21 @@
     margin: 0 50px;
     min-height: 50vh;
     font-size: large;
-}
 
-main {
     color: white;
     text-align: center;
-    margin: 50px auto;
+}
+
+header {
+    margin-top: 50px;
+}
+
+footer {
+    margin-bottom: 50px;
+}
+
+main section {
+    display: none;
 }
 
 h1 {
@@ -18,6 +27,14 @@ h1 {
 
 p {
     line-height: 2;
+}
+
+main p::before {
+    content: "⚠️ ";
+}
+
+footer p::before, main p:last-child::before {
+    content: "💰 ";
 }
 
 a {
