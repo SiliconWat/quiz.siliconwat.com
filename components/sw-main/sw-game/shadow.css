@@ -188,6 +188,10 @@ button:disabled {
     footer button {
         font-size: 0.8em;
     }
+
+    main h4 {
+        font-size: x-large;
+    }
     
     footer h4 {
         font-size: larger;
