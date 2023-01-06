@@ -8,8 +8,14 @@ class SwHeader extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
+    #games = {
+        quiz: "Programming Concept Quizzes",
+        code: "Interactive Coding Exercises",
+        flashcard: "Syntax Flashcard Games"
+    };
+
     async render() {
-        this.shadowRoot.getElementById('game').textContent = GAME[1];
+        this.shadowRoot.getElementById('game').textContent = this.#games[GAME[0]];
         this.shadowRoot.getElementById('game').href = window.location.search;
         this.shadowRoot.querySelector('ul').replaceChildren(await this.#render('frontend'), await this.#render('backend'), await this.#render('ios'));
         this.style.opacity = 1;

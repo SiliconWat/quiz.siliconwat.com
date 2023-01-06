@@ -1,0 +1,169 @@
+:host {
+    font-size: large;
+}
+
+main, footer {
+    display: none;
+    background-color: rgba(255, 255, 255, 70%);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    color: currentColor;
+    margin: 50px auto;
+
+    padding: 30px;
+    max-width: 700px;
+    box-sizing: border-box;
+}
+
+section:first-child {
+    text-align: center;
+}
+
+section:nth-child(2) {
+    margin: 50px 30px;
+}
+
+section:last-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+h4 {
+    margin: 0 0 10px;
+    font-size: xx-large;
+}
+
+footer h4 {
+    background-color: #1f8197;
+    padding: 10px;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+small {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+aside {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+p {
+    font-size: larger;
+}
+
+code {
+    font-weight: bold;
+}
+
+ol, ul {
+    list-style-type: "🔲";
+    padding: 0;
+}
+
+li {
+    padding-left: 10px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+ul li {
+    font-weight: bold;
+    font-size: larger;
+    cursor: default;
+}
+
+ul li span {
+    float: right;
+}
+
+li.selected {
+    list-style-type: "✔️";
+}
+
+li.correct, li.wrong {
+    cursor: default;
+    opacity: 0.5;
+}
+
+li.corrects {
+    list-style-type: "👍🏼";
+    color: green;
+}
+
+li.wrongs {
+    list-style-type: "👎🏼";
+    color: red;
+}
+
+li.skips {
+    list-style-type: "👐🏼";
+    color: grey;
+}
+
+li.score {
+    list-style-type: "👏🏼";
+    font-size: x-large;
+}
+
+button {
+    background-color: #1f8197;
+    border: 0;
+    padding: 5px 20px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1em;
+}
+
+button.correct::before {
+    content: "👍🏼";
+    margin-right: 10px;
+}
+
+button.wrong::before {
+    content: "👎🏼";
+    margin-right: 10px;
+}
+
+button.correct {
+    background-color: green;
+}
+
+button.wrong {
+    background-color: red;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+@media (max-width: 480px) {
+    section:nth-child(2) {
+        margin: 50px 20px;
+    }
+
+    main h4 {
+        font-size: x-large;
+    }
+    
+    footer h4 {
+        font-size: larger;
+    }
+
+    aside button {
+        font-size: 0.5em;
+    }
+
+    footer button {
+        font-size: 0.8em;
+    }
+}
