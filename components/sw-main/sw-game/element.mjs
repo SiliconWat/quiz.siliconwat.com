@@ -41,13 +41,13 @@ class SwGame extends HTMLElement {
     }
 
     async #getData(getData, course, c) {
-        switch (course) {
-            case "frontend":
+        switch (GAME[0]) {
+            case "quiz":
                 const quizzes = await getData(`https://gist.githubusercontent.com/thonly/0a6a6dd684288d3963723f69d91cebe4/raw/${course}.json`);
                 return quizzes[c] || [];
-            case "backend":
+            case "code":
                 return;
-            case "ios":
+            case "flashcard":
                 return;
         }
     }
