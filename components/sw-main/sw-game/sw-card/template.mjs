@@ -36,7 +36,6 @@ template.innerHTML = `
             <button id="collect">Collect Coins</button>
         </section>
     </footer>
-    
 `;
 
 export default template;
