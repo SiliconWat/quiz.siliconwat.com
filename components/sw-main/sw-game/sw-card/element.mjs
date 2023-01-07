@@ -42,11 +42,16 @@ class SwCard extends HTMLElement {
                 else wrong++;
             }
         });
+        
+        const score = this.#quiz.length > 0 ? Math.round((correct - wrong) / this.#quiz.length * 100) : 0;
+        const Score = this.#setScore(score);
 
         this.shadowRoot.getElementById('correct').textContent = correct;
         this.shadowRoot.getElementById('wrong').textContent = wrong;
         this.shadowRoot.getElementById('skipped').textContent = skipped;
-        this.shadowRoot.getElementById('score').textContent = this.#quiz.length > 0 ? Math.round((correct - wrong) / this.#quiz.length * 100) + "%" : "0%";
+        this.shadowRoot.getElementById('high').textContent = score > Score ? "New High" : "Score";
+        this.shadowRoot.getElementById('highest').textContent = Score + "%";
+        this.shadowRoot.getElementById('score').textContent = score + "%";
 
         this.shadowRoot.getElementById('restart').disabled = localStorage.getItem(this.#pointer) === "completed";
         this.shadowRoot.getElementById('restart').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
@@ -54,6 +59,13 @@ class SwCard extends HTMLElement {
         this.shadowRoot.getElementById('collect').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
 
         this.shadowRoot.querySelector('footer').style.display = 'block';
+    }
+
+    #setScore(score) {
+        let Score = localStorage.getItem(`${this.#pointer}-score`);
+        Score = Score === null ? score : Number(Score);
+        localStorage.setItem(`${this.#pointer}-score`, Math.max(Score, score));
+        return Score;
     }
 
     #renderProblem() {
@@ -91,6 +103,7 @@ class SwCard extends HTMLElement {
         this.shadowRoot.getElementById('submit').style.display = localStorage.getItem(`${this.#pointer}-problem${problem.id}-selection`) ? 'inline-block' : 'none';
         this.shadowRoot.getElementById('submit').textContent = localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`) ? (answer == problem.answer ? "Correct" : "Wrong") : "Submit Answer";
         this.shadowRoot.getElementById('submit').disabled = answer;
+        this.shadowRoot.getElementById('finish').style.display = problem.question ? 'block' : 'none';
 
         this.shadowRoot.getElementById('submit').classList.remove("correct", "wrong");
         if (answer) this.shadowRoot.getElementById('submit').classList.add(answer == problem.answer ? "correct" : "wrong");

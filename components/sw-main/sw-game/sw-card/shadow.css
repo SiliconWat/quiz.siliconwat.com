@@ -112,6 +112,11 @@ li.score {
     font-size: x-large;
 }
 
+li.highest {
+    list-style-type: none;
+    color: grey;
+}
+
 button {
     background-color: #1f8197;
     border: 0;

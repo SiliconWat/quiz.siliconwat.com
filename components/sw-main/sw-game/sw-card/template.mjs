@@ -17,7 +17,7 @@ template.innerHTML = `
         </section>
         <section>
             <button id="submit" onclick="this.getRootNode().host.submit(event)"></button>
-            <button onclick="this.getRootNode().host.finish(event)">Finish</button>
+            <button id="finish" onclick="this.getRootNode().host.finish(event)">Finish</button>
         </section>
     </main>
     <footer>
@@ -29,7 +29,8 @@ template.innerHTML = `
             <li class="wrongs">Wrong: <span id="wrong"></span></li>
             <li class="skips">Skipped: <span id="skipped"></span></li>
             <hr>
-            <li class="score">Score <span id="score"></span></li>
+            <li class="score"><b id="high"></b> <span id="score"></span></li>
+            <li class="highest">Highest <span id="highest"></span></li>
         </ul>
         <section>
             <button id="restart" onclick="this.getRootNode().host.restart(event)">Retake Quiz</button>
