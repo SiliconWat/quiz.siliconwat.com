@@ -46,11 +46,13 @@ class SwGame extends HTMLElement {
                 const quizzes = await getData(`https://gist.githubusercontent.com/thonly/0a6a6dd684288d3963723f69d91cebe4/raw/${course}.json`);
                 return quizzes[c] || [];
             case "code":
-                return;
+                const exercises = await getData(`https://gist.githubusercontent.com/thonly/3fd6cf0952a7240916c62f988ba192b1/raw/${course}.json`);
+                return exercises[c] || [];
             case "flashcard":
-                return;
+                const games = await getData(`https://gist.githubusercontent.com/thonly/cf3990b20f1f573bbdada0ce1d36d729/raw/${course}.json`);
+                return games[c] || [];
         }
     }
-}
+} 
 
 customElements.define("sw-game", SwGame);
