@@ -68,20 +68,28 @@ class SwCard extends HTMLElement {
         return Score;
     }
 
+    #shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
     #renderProblem() {
         const current = Number(localStorage.getItem(`${this.#pointer}-current`));
         const problem = this.#quiz[current] || {};
         const choices = document.createDocumentFragment();
 
         if (problem.choices) {
-            problem.choices.forEach((choice, answer) => {
+            this.#shuffle([...problem.choices]).forEach(choice => {
                 const selection = localStorage.getItem(`${this.#pointer}-problem${problem.id}-selection`);
                 const li = document.createElement('li');
-                li.id = answer;
+                li.id = problem.choices.indexOf(choice); // answer
                 li.innerHTML = choice;
-                li.onclick = this.#select.bind(this, problem.id, answer);
-                if (answer == selection) li.classList.add('selected');
-                if (localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`)) li.classList.add(answer === problem.answer ? 'correct' : 'wrong');
+                li.onclick = this.#select.bind(this, problem.id, li.id);
+                if (li.id == selection) li.classList.add('selected');
+                if (localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`)) li.classList.add(li.id === problem.answer ? 'correct' : 'wrong');
                 choices.append(li);
             });
         }
