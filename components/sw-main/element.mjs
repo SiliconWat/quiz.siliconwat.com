@@ -1,4 +1,4 @@
-import { GAME } from 'https://thonly.org/global.mjs';
+import { GAME, DEVICE } from 'https://thonly.org/global.mjs';
 import template from './template.mjs';
 
 class SwMain extends HTMLElement {
@@ -10,7 +10,12 @@ class SwMain extends HTMLElement {
     }
 
     connectedCallback() {
-        this.style.display = 'block';
+        if (GAME[0] === 'flashcard' || (DEVICE[0] === 'mac' || DEVICE[0] === 'pc')) {
+            const img = document.createElement('img');
+            this.shadowRoot.querySelector('footer').prepend(img);
+            img.src = DEVICE[1].image;
+            img.title = DEVICE[1].description;
+        }
     }
 
     render() {
@@ -18,6 +23,7 @@ class SwMain extends HTMLElement {
         document.querySelector('main').style.display = 'none';
         this.shadowRoot.querySelector("slot").assignedElements().forEach(element => element.style.display = 'none');
         this.shadowRoot.querySelector("slot").assignedElements().find(element => element.tagName === this.#hash[0]).render(this.#hash[1], this.#hash[2], this.#query);
+        this.style.display = 'block';
         document.documentElement.style.backgroundImage = GAME[2];
         document.querySelector('main').style.display = 'flex';
         document.body.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
