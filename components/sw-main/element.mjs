@@ -10,12 +10,10 @@ class SwMain extends HTMLElement {
     }
 
     connectedCallback() {
-        if (GAME[0] === 'flashcard' || (DEVICE[0] === 'mac' || DEVICE[0] === 'pc')) {
-            const img = document.createElement('img');
-            this.shadowRoot.querySelector('footer').prepend(img);
-            img.src = DEVICE[1].image;
-            img.title = DEVICE[1].description;
-        }
+        const img = document.createElement('img');
+        this.shadowRoot.querySelector('footer').prepend(img);
+        img.src = GAME[0] === 'flashcard' ? DEVICE[1].image : DEVICE[2].image;
+        img.title = GAME[0] === 'flashcard' ? DEVICE[1].description : DEVICE[2].description;
         this.style.display = 'block';
     }
 
