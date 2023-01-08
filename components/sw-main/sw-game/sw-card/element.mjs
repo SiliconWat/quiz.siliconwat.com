@@ -77,9 +77,9 @@ class SwCard extends HTMLElement {
     }
 
     #renderProblem(shuffle) {
+        const choices = document.createDocumentFragment();
         const current = Number(localStorage.getItem(`${this.#pointer}-current`));
         let problem = this.#quiz[current] || {};
-        const choices = document.createDocumentFragment();
 
         if (problem.choices) {
             if (shuffle) {
