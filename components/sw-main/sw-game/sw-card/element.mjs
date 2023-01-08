@@ -26,7 +26,7 @@ class SwCard extends HTMLElement {
                 this.#renderResult();
                 break;
             default:
-                this.#renderProblem();
+                this.#renderProblem(true);
         }
     }
 
@@ -76,16 +76,22 @@ class SwCard extends HTMLElement {
         return array;
     }
 
-    #renderProblem() {
+    #renderProblem(shuffle) {
         const current = Number(localStorage.getItem(`${this.#pointer}-current`));
-        const problem = this.#quiz[current] || {};
+        let problem = this.#quiz[current] || {};
         const choices = document.createDocumentFragment();
 
         if (problem.choices) {
-            this.#shuffle([...problem.choices]).forEach(choice => {
+            if (shuffle) {
+                const shuffled = this.#shuffle([...problem.choices]);
+                this.#quiz[current].answer = shuffled.indexOf(problem.choices[problem.answer]);
+                this.#quiz[current].choices = shuffled;
+                problem = this.#quiz[current];
+            }
+            problem.choices.forEach((choice, answer) => {
                 const selection = localStorage.getItem(`${this.#pointer}-problem${problem.id}-selection`);
                 const li = document.createElement('li');
-                li.id = problem.choices.indexOf(choice); // answer
+                li.id = answer;
                 li.innerHTML = choice;
                 li.onclick = this.#select.bind(this, problem.id, li.id);
                 if (li.id == selection) li.classList.add('selected');
@@ -121,24 +127,24 @@ class SwCard extends HTMLElement {
         if (localStorage.getItem(`${this.#pointer}-problem${id}-answer`) === null) {
             //localStorage.setItem(`${this.#pointer}-problem${id}-selection`, event.target.id); // race condition
             localStorage.setItem(`${this.#pointer}-problem${id}-selection`, answer);
-            this.#renderProblem();
+            this.#renderProblem(false);
         }
     }
 
     submit(event) {
         const problem = this.#quiz[Number(localStorage.getItem(`${this.#pointer}-current`))];
         localStorage.setItem(`${this.#pointer}-problem${problem.id}-answer`, localStorage.getItem(`${this.#pointer}-problem${problem.id}-selection`));
-        this.#renderProblem();
+        this.#renderProblem(false);
     }
 
     next(event) {
         localStorage.setItem(`${this.#pointer}-current`, Number(localStorage.getItem(`${this.#pointer}-current`)) + 1);
-        this.#renderProblem();
+        this.#renderProblem(true);
     }
 
     previous(event) {
         localStorage.setItem(`${this.#pointer}-current`, Number(localStorage.getItem(`${this.#pointer}-current`)) - 1);
-        this.#renderProblem();
+        this.#renderProblem(false);
     }
 
     finish(event) {
