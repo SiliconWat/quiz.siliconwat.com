@@ -30,52 +30,6 @@ class SwCard extends HTMLElement {
         }
     }
 
-    #renderResult() {
-        let correct = 0, wrong = 0, skipped = 0;
-
-        this.#quiz.forEach(problem => {
-            const answer = localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`);
-            if (answer === null) {
-                skipped++;
-            } else {
-                if (answer == problem.answer) correct++
-                else wrong++;
-            }
-        });
-        
-        const score = this.#quiz.length > 0 ? Math.round((correct - wrong) / this.#quiz.length * 100) : 0;
-        const Score = this.#setScore(score);
-
-        this.shadowRoot.getElementById('correct').textContent = correct;
-        this.shadowRoot.getElementById('wrong').textContent = wrong;
-        this.shadowRoot.getElementById('skipped').textContent = skipped;
-        this.shadowRoot.getElementById('high').textContent = score > Score ? "New High" : "Score";
-        this.shadowRoot.getElementById('highest').textContent = Score + "%";
-        this.shadowRoot.getElementById('score').textContent = score + "%";
-
-        this.shadowRoot.getElementById('restart').disabled = localStorage.getItem(this.#pointer) === "completed";
-        this.shadowRoot.getElementById('restart').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
-        this.shadowRoot.getElementById('collect').disabled = true;
-        this.shadowRoot.getElementById('collect').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
-
-        this.shadowRoot.querySelector('footer').style.display = 'block';
-    }
-
-    #setScore(score) {
-        let Score = localStorage.getItem(`${this.#pointer}-score`);
-        Score = Score === null ? score : Number(Score);
-        localStorage.setItem(`${this.#pointer}-score`, Math.max(Score, score));
-        return Score;
-    }
-
-    #shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
     #renderProblem(shuffle) {
         const choices = document.createDocumentFragment();
         const current = Number(localStorage.getItem(`${this.#pointer}-current`));
@@ -150,6 +104,52 @@ class SwCard extends HTMLElement {
     finish(event) {
         localStorage.setItem(this.#pointer, "finished");
         this.render();
+    }
+
+    #renderResult() {
+        let correct = 0, wrong = 0, skipped = 0;
+
+        this.#quiz.forEach(problem => {
+            const answer = localStorage.getItem(`${this.#pointer}-problem${problem.id}-answer`);
+            if (answer === null) {
+                skipped++;
+            } else {
+                if (answer == problem.answer) correct++
+                else wrong++;
+            }
+        });
+        
+        const score = this.#quiz.length > 0 ? Math.round((correct - wrong) / this.#quiz.length * 100) : 0;
+        const Score = this.#setScore(score);
+
+        this.shadowRoot.getElementById('correct').textContent = correct;
+        this.shadowRoot.getElementById('wrong').textContent = wrong;
+        this.shadowRoot.getElementById('skipped').textContent = skipped;
+        this.shadowRoot.getElementById('high').textContent = score > Score ? "New High" : "Score";
+        this.shadowRoot.getElementById('highest').textContent = Score + "%";
+        this.shadowRoot.getElementById('score').textContent = score + "%";
+
+        this.shadowRoot.getElementById('restart').disabled = localStorage.getItem(this.#pointer) === "completed";
+        this.shadowRoot.getElementById('restart').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
+        this.shadowRoot.getElementById('collect').disabled = true;
+        this.shadowRoot.getElementById('collect').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
+
+        this.shadowRoot.querySelector('footer').style.display = 'block';
+    }
+
+    #setScore(score) {
+        let Score = localStorage.getItem(`${this.#pointer}-score`);
+        Score = Score === null ? score : Number(Score);
+        localStorage.setItem(`${this.#pointer}-score`, Math.max(Score, score));
+        return Score;
+    }
+
+    #shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
 
     restart(event) {
