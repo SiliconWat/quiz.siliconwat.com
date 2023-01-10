@@ -60,6 +60,9 @@ p {
 
 code {
     font-weight: bold;
+    font-size: larger;
+    background-color: gainsboro;
+    padding: 3px 8px;
 }
 
 ol, ul {
