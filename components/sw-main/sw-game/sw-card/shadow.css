@@ -65,9 +65,13 @@ code {
     padding: 3px 8px;
 }
 
-ol, ul {
+ol {
     list-style-type: "🔲";
     padding: 0;
+}
+
+ul {
+    padding: 1px 0;
 }
 
 li {
