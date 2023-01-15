@@ -21,6 +21,7 @@ template.innerHTML = `
         </section>
         <section id="flashcard">
             <p>These <strong>flashcards</strong> are created to help you <em>remember</em> <strong>code syntaxes</strong>.</p>
+            <p>To make the <strong>games</strong> simple and fun, the <em>answers</em> are always <strong>one-liners</strong>.</p>
             <p>There are <em>three levels</em>: <strong>Junior</strong>, <strong>Mid</strong>, and <strong>Senior</strong></p>
             <p>The more <em>difficult</em> the level, the <strong>less time</strong> you have.</p>
             <p>But also, the more <strong>SW Coins</strong> you will earn!</p>
