@@ -13,7 +13,7 @@ class SwGame extends HTMLElement {
         const completed = localStorage.getItem(pointer) === 'completed';
 
         const { YEAR_BEGAN, getData } = await import(`${FRONTEND}/global2.mjs`);
-        const { course, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${Course}-cohort/main/${YEAR_BEGAN}/Syllabus.json`);
+        const { course, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${Course}.siliconwat.dev/main/${YEAR_BEGAN}/Syllabus.json`);
         const chapter = chapters[c - 1]
 
         this.shadowRoot.getElementById('course').textContent = course.title;

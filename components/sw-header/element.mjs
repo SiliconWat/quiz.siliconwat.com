@@ -29,7 +29,7 @@ class SwHeader extends HTMLElement {
 
     async #render(course) {
         const { YEAR_BEGAN, getData } = await import(`${FRONTEND}/global2.mjs`);
-        const { units, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${course}-cohort/main/${YEAR_BEGAN}/Syllabus.json`);
+        const { units, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${course}.siliconwat.dev/main/${YEAR_BEGAN}/Syllabus.json`);
 
         const fragment = document.createDocumentFragment();
         const li = document.createElement('li');

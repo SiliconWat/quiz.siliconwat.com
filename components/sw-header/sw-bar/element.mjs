@@ -11,7 +11,7 @@ class SwBar extends HTMLElement {
     async render() {
         let sum = 0;
         const { YEAR_BEGAN, getData } = await import(`${FRONTEND}/global2.mjs`);
-        const { chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${this.getAttribute('id')}-cohort/main/${YEAR_BEGAN}/Syllabus.json`);
+        const { chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${this.getAttribute('id')}.siliconwat.dev/main/${YEAR_BEGAN}/Syllabus.json`);
 
         chapters.forEach((chapter, c) => {
             if (localStorage.getItem(`${this.getAttribute('id')}-chapter${c + 1}`) === "completed") sum += 1;
