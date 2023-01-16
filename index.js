@@ -1,14 +1,15 @@
 import "/components/sw-main/sw-home/element.mjs";
 import "/components/sw-main/sw-game/element.mjs";
 
-import "/components/sw-header/element.mjs";
 import "/components/sw-footer/element.mjs";
+import "/components/sw-coin/element.mjs";
+
+import "/components/sw-header/element.mjs";
 import "/components/sw-main/element.mjs";
 
-import { FRONTEND_COURSE as FRONTEND, SHOWCASE, GAME } from "https://thonly.org/global.mjs";
+import { FRONTEND_COURSE as FRONTEND, GAME } from "https://thonly.org/global.mjs";
 window.onload = async () => {
     await import(`${FRONTEND}/components/sw-music/element.mjs`);
-    await import(`${SHOWCASE}/components/sw-coin/element.mjs`);
     if (!window.TESTING) window.clearCache();
     
     await document.querySelector('sw-main').render();
