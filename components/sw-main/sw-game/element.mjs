@@ -14,7 +14,7 @@ class SwGame extends HTMLElement {
 
         const { YEAR_BEGAN, getData } = await import(`${FRONTEND}/global2.mjs`);
         const { course, chapters } = await getData(`https://raw.githubusercontent.com/SiliconWat/${Course}.siliconwat.dev/main/${YEAR_BEGAN}/Syllabus.json`);
-        const chapter = chapters[c - 1]
+        const chapter = chapters[c - 1];
 
         this.shadowRoot.getElementById('course').textContent = course.title;
         this.shadowRoot.getElementById('course').href = `https://${Course}.siliconwat.${ref === 'cohort' ? "org" : "com"}`;
@@ -27,6 +27,7 @@ class SwGame extends HTMLElement {
         await import(`${GAME[1]}/components/sw-main/sw-game/sw-card/element.mjs`);
         this.shadowRoot.querySelector('sw-card').render(pointer, await this.#getData(getData, Course, c));
         this.style.display = 'block';
+        document.body.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
     }
 
     #prefix(completed) {

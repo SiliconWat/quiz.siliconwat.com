@@ -60,6 +60,7 @@ class SwCard extends HTMLElement {
         this.shadowRoot.querySelector('ol').replaceChildren(choices);
         this.#renderButtons(current, problem);
         this.shadowRoot.querySelector('main').style.display = 'block';
+        //this.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
     }
 
     #renderButtons(current, problem) {
@@ -135,6 +136,7 @@ class SwCard extends HTMLElement {
         this.shadowRoot.getElementById('collect').style.textDecorationLine = localStorage.getItem(this.#pointer) === "completed" ? "line-through" : "none";
 
         this.shadowRoot.querySelector('footer').style.display = 'block';
+        //document.body.scrollIntoView({ behavior: "smooth", block: "start", inline: "center" });
     }
 
     #setScore(score) {
