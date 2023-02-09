@@ -41,7 +41,7 @@ a {
     color: currentColor;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) or (max-height: 480px) {
     :host {
         margin: 0 30px;
     }
