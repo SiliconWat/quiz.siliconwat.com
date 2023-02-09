@@ -158,7 +158,7 @@ button:disabled {
     cursor: default;
 }
 
-@media (max-width: 480px) or (max-height: 480px) {
+@media (max-width: 480px), (max-height: 480px) {
     section:nth-child(2) {
         margin: 50px 20px;
     }
